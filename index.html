@@ -1,9 +1,124 @@
-<html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>下载APP</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        #model{
+            position: absolute;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+        }
+        .three{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .two span{
+            font-size: 1rem;
+            color: #b0b0b0;
+        }
+        .one img{
+            width: 8rem;
+            height: 8rem;
+        }
+        .backColor{
+            display: none;
+            font-size: 1rem;
+            color: white;
+            width: 9rem;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+        .app{
+            background-color: #0e5e5d; /* 浏览器不支持时显示 */
+            border-radius: 1.2rem;
+            background-image: linear-gradient(#a9c1b7, #127674, #0e5e5d);
+        }
+        .alipay{
+            background-color: #3c9ad7; /* 浏览器不支持时显示 */
+            border-radius: 1.2rem;
+            background-image: linear-gradient(#f7f7f7, #3b94d0, #378ec6);
+        }
+        .weichat{
+            background-color: #3c9ad7; /* 浏览器不支持时显示 */
+            border-radius: 1.2rem;
+            background-image: linear-gradient(#d5e7ac, #8cc63e, #8cc63e);
+        }
+        .model_content{
+            position: absolute;
+            bottom: 25%;
+        }
+    </style>
+<link href="../changeColor/blue.css" rel="stylesheet" type="text/css"></head>
 <body>
+<!--这个是用来展示弹框内容的 -->
+<div id="model" style="background: url('./img/backImg.jpg') no-repeat;background-size: 100% 100%;">
+    <div class="model_content">
+        <div class="three">
+            <div class="app backColor" style="display: block;">下载国网APP</div>
+        </div>
+        <div class="three">
+            <div class="alipay backColor">关注生活号</div>
+        </div>
+        <div class="three">
+            <div class="weichat backColor">关注公众号</div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/common.js?version=2019.07.10"></script><div class="modal_frame" style="display:none;"><div class="modal_mask_transparent"></div><div class="modal_toast"><p class="fs3 typeface_color"></p></div></div>
+<script src="./js/reqrcode.js"></script>
+<script src="./js/jquery.qrcode.js"></script>
+<script>
 
-<a href="http://www.w3school.com.cn/">Visit W3School</a>
+    function is_weixn_Ali() {
+        var ua = navigator.userAgent.toLowerCase();
+        // console.log(ua)
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            document.title = '关注公众号/下载App';
+            return 'weixin';
+        }  else if (ua.match(/AlipayClient/i) == 'alipayclient') {
+            document.title = '关注生活号/下载App';
+            return 'Alipay';
+        } else {
+            document.title = '下载APP';
+            return 'other'
+        }
+    }
+    $(".weichat").click(function () {
+        window.location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzIwOTEyMTY1NA==&scene=124#wechat_redirect'
+    })
+    $(".app").click(function () {
+        window.location.href = 'https://osg-static.sgcc.com.cn/app/download/index.html?channel=zb0001'
+    })
+    $(".alipay").click(function () {
+        window.location.href = 'alipays://platformapi/startapp?appId=20000042&publicBizType=LIFE_APP&publicId=2019042264281146'
+    })
+    if (is_weixn_Ali() == 'weixin') {
+        $(".weichat").show()
+        $(".app").show()
+    } else if (is_weixn_Ali() == 'Alipay') {
+        $(".alipay").show()
+        $(".app").show()
+    } else {
+        // $(".alipay").show()
+        $(".app").show()
+        // $(".weichat").show()
+        // window.location.href = 'https://osg-static.sgcc.com.cn/app/download/index.html?channel=zb0001'
+    }
+</script>
 
-<p href="http://www.w3school.com.cn/">Visit W3School</p>
 
-</body>
-</html>
+</body></html>
